@@ -1,27 +1,27 @@
 import { union } from 'lodash/fp'
 
-MeteorOAuth2.requestCredential = function (options, credentialRequestCompleteCallback) {
+MeteorOAuth2.requestCredential = function(options = {}, credentialRequestCompleteCallback) {
+
   if (!credentialRequestCompleteCallback && typeof options === 'function') {
     credentialRequestCompleteCallback = options
     options = {}
   }
 
-  var config = ServiceConfiguration.configurations.findOne({
+  const config = ServiceConfiguration.configurations.findOne({
     service: MeteorOAuth2.serviceName
   })
 
-  var credentialToken = Random.secret()
+  const credentialToken = Random.secret()
 
-  // always need this to get user id from service.
-  var requiredScope = ['email']
-  var scope = []
-  if (options.scope)
-    scope = options.scope
+  const requiredScope = ['email']
+  let scope = []
+  if (options && options.scope)
+    scope = options.scope || []
   scope = union(scope, requiredScope)
 
-  var loginStyle = OAuth._loginStyle(MeteorOAuth2.serviceName, config, options)
+  const loginStyle = OAuth._loginStyle(MeteorOAuth2.serviceName, config, options)
 
-  var loginUrl = config.loginUrl +
+  const loginUrl = config.loginUrl +
     '?response_type=code' +
     '&client_id=' + config.clientId +
     '&redirect_uri=' + OAuth._redirectUri(MeteorOAuth2.serviceName, config) +
@@ -34,6 +34,6 @@ MeteorOAuth2.requestCredential = function (options, credentialRequestCompleteCal
     loginUrl: loginUrl,
     credentialRequestCompleteCallback: credentialRequestCompleteCallback,
     credentialToken: credentialToken,
-    popupOptions: { height: 600 }
   })
+
 }
