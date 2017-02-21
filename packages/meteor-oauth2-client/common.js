@@ -1,9 +1,5 @@
-import { isUndefined } from 'lodash/fp'
-
-if (isUndefined(MeteorOAuth2)) {
-  MeteorOAuth2 = {
-    serviceName: 'MeteorOAuth2Server'
-  }
+MeteorOAuth2 = {
+  serviceName: 'MeteorOAuth2Server'
 }
 
 Accounts.oauth.registerService(MeteorOAuth2.serviceName)
