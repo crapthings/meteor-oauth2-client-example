@@ -1,4 +1,5 @@
-const fs = Npm.require('fs')
+import fs from 'fs'
+import { isPlainObject } from 'lodash/fp'
 const configPath = `${process.env.PWD}/private/oauth.json`
 const isConfigExist = fs.existsSync(configPath)
 
@@ -7,7 +8,7 @@ if (!isConfigExist)
 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
 
-if (_.isPlainObject(config)) {
+if (isPlainObject(config)) {
   config.service = MeteorOAuth2.serviceName
   config.loginStyle = 'redirect'
   const { clientId, secret, baseUrl, loginUrl } = config

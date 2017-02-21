@@ -1,6 +1,6 @@
-_ = require('lodash')
+import { isUndefined } from 'lodash/fp'
 
-if (_.isUndefined(MeteorOAuth2)) {
+if (isUndefined(MeteorOAuth2)) {
   MeteorOAuth2 = {
     serviceName: 'MeteorOAuth2Server'
   }

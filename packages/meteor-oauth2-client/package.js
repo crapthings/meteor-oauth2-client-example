@@ -16,15 +16,14 @@ Package.onUse(function (api) {
   api.use('accounts-oauth', ['client', 'server'])
   api.use('http', ['client', 'server'])
   api.use('service-configuration', ['client', 'server'])
-  api.use('underscore', ['client', 'server'])
   api.use(['random', 'templating@1.0.11'], 'client')
 
-  api.addFiles('meteor_common.js', ['client', 'server'])
+  api.addFiles('common.js', ['client', 'server'])
 
   api.addFiles('check.js', 'server')
 
-  api.addFiles('meteor_server.js', 'server')
-  api.addFiles('meteor_client.js', 'client')
+  api.addFiles('server.js', 'server')
+  api.addFiles('client.js', 'client')
 
   api.export('MeteorOAuth2')
 })
