@@ -19,5 +19,7 @@ Package.onUse(function(api) {
     api.addFiles('meteor_server.js', 'server')
     api.addFiles('meteor_client.js', 'client')
 
+    api.addFiles('config.js', 'server')
+
     api.export('MeteorOAuth2')
 })
