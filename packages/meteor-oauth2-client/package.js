@@ -11,7 +11,7 @@ Package.onUse(function (api) {
   api.use('ecmascript')
 
   api.use('oauth2', ['client', 'server'])
-    api.use('oauth', ['client', 'server'])
+  api.use('oauth', ['client', 'server'])
   api.use('accounts-base', ['client', 'server'])
   api.use('accounts-oauth', ['client', 'server'])
   api.use('http', ['client', 'server'])
