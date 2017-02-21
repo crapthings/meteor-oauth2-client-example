@@ -7,10 +7,10 @@ if (!isConfigExist)
 
 const config = JSON.parse(fs.readFileSync(configPath, 'utf-8'))
 
-if (config) {
-  config.service = 'MeteorOAuth2Server'
+if (_.isPlainObject(config)) {
+  config.service = MeteorOAuth2.serviceName
   config.loginStyle = 'redirect'
-  const { clientId, secret, baseUrl, loginUrl, } = config
+  const { clientId, secret, baseUrl, loginUrl } = config
 
   if (!clientId)
     throw new Meteor.Error(`missing clientId`)

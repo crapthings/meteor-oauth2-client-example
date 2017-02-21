@@ -1,16 +1,16 @@
-var OAuth = Package.oauth.OAuth
-var Random = Package.random.Random
+const OAuth = Package.oauth.OAuth
+const Random = Package.random.Random
 
 OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function (query) {
-  var config = ServiceConfiguration.configurations.findOne({
+  const config = ServiceConfiguration.configurations.findOne({
     service: MeteorOAuth2.serviceName
   })
 
-  var response = getTokenResponse(query, config)
-  var accessToken = response.accessToken
-  var identity = getIdentity(accessToken, config)
+  const response = getTokenResponse(query, config)
+  const accessToken = response.accessToken
+  const identity = getIdentity(accessToken, config)
 
-  var serviceData = {
+  const serviceData = {
     id: identity.id,
     accessToken: accessToken,
     expiresAt: (+new Date) + (1000 * response.expiresIn),
@@ -27,7 +27,7 @@ OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function (query) {
   }
 })
 
-var isJSON = function (str) {
+const isJSON = function (str) {
   try {
     JSON.parse(str)
     return true
@@ -36,8 +36,8 @@ var isJSON = function (str) {
   }
 }
 
-var getTokenResponse = function (query, config) {
-  var responseContent
+const getTokenResponse = function (query, config) {
+  let responseContent
   try {
     responseContent = HTTP.post(
       config.baseUrl + '/oauth/token', {
@@ -58,9 +58,9 @@ var getTokenResponse = function (query, config) {
     throw new Error("Failed to complete OAuth handshake" + responseContent)
   }
 
-  var parsedResponse = JSON.parse(responseContent)
-  var accessToken = parsedResponse.access_token
-  var expiresIn = parsedResponse.expires_in
+  const parsedResponse = JSON.parse(responseContent)
+  const accessToken = parsedResponse.access_token
+  const expiresIn = parsedResponse.expires_in
 
   if (!accessToken) {
     throw new Error("Failed to complete OAuth handshake\n\
@@ -73,8 +73,8 @@ var getTokenResponse = function (query, config) {
   }
 }
 
-var getIdentity = function (accessToken, config) {
-  var fetchUrl = config.baseUrl + '/oauth/getIdentity'
+const getIdentity = function (accessToken, config) {
+  const fetchUrl = config.baseUrl + '/oauth/getIdentity'
   try {
     return HTTP.get(
       fetchUrl, {

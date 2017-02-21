@@ -1,3 +1,5 @@
+_ = require('lodash')
+
 if (_.isUndefined(MeteorOAuth2)) {
   MeteorOAuth2 = {
     serviceName: 'MeteorOAuth2Server'
