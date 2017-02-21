@@ -15,11 +15,6 @@ Package.onUse(function(api) {
     api.use('underscore', ['client', 'server'])
     api.use(['random', 'templating@1.0.11'], 'client')
 
-    api.addFiles([
-        'meteor_configure.html',
-        'meteor_configure.js'
-    ], 'client')
-
     api.addFiles('meteor_common.js', ['client', 'server'])
     api.addFiles('meteor_server.js', 'server')
     api.addFiles('meteor_client.js', 'client')
