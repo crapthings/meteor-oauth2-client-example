@@ -27,3 +27,4 @@ webapp@1.3.12
 standard-minifier-css
 standard-minifier-js
 shell-server
+kadira:flow-router
