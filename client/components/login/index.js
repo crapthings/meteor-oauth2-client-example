@@ -1,3 +1,3 @@
 Login = () => <div>
-  <button onClick={() => Meteor.loginWithMeteorOAuth2Server({})}>login with oauth</button>
+  <button onClick={() => Meteor.loginWithMeteorOAuth2Server()}>login with oauth</button>
 </div>

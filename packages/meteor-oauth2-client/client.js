@@ -1,7 +1,6 @@
 import { union } from 'lodash/fp'
 
-MeteorOAuth2.requestCredential = function(options = {}, credentialRequestCompleteCallback) {
-
+MeteorOAuth2.requestCredential = function(options, credentialRequestCompleteCallback) {
   if (!credentialRequestCompleteCallback && typeof options === 'function') {
     credentialRequestCompleteCallback = options
     options = {}
@@ -14,9 +13,11 @@ MeteorOAuth2.requestCredential = function(options = {}, credentialRequestComplet
   const credentialToken = Random.secret()
 
   const requiredScope = ['email']
+
   let scope = []
   if (options && options.scope)
     scope = options.scope || []
+
   scope = union(scope, requiredScope)
 
   const loginStyle = OAuth._loginStyle(MeteorOAuth2.serviceName, config, options)
@@ -30,10 +31,9 @@ MeteorOAuth2.requestCredential = function(options = {}, credentialRequestComplet
 
   OAuth.launchLogin({
     loginService: MeteorOAuth2.serviceName,
-    loginStyle: loginStyle,
-    loginUrl: loginUrl,
-    credentialRequestCompleteCallback: credentialRequestCompleteCallback,
-    credentialToken: credentialToken,
+    loginStyle,
+    loginUrl,
+    credentialRequestCompleteCallback,
+    credentialToken,
   })
-
 }

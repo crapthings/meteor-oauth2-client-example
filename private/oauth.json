@@ -1,5 +1,4 @@
 {
-   "service":"MeteorOAuth2Server",
    "clientId":"clientApplication",
    "secret":"12345",
    "baseUrl":"http://localhost:3100",

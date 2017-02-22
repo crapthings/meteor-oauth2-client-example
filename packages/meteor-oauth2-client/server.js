@@ -1,7 +1,7 @@
 const OAuth = Package.oauth.OAuth
 const Random = Package.random.Random
 
-OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function (query) {
+OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function(query) {
   const config = ServiceConfiguration.configurations.findOne({
     service: MeteorOAuth2.serviceName
   })
@@ -12,22 +12,22 @@ OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function (query) {
 
   const serviceData = {
     id: identity.id,
-    accessToken: accessToken,
     expiresAt: (+new Date) + (1000 * response.expiresIn),
-    identity: identity
+    accessToken,
+    identity
   }
 
   return {
-    serviceData: serviceData,
     options: {
       profile: {
         name: identity.email
       }
-    }
+    },
+    serviceData,
   }
 })
 
-const isJSON = function (str) {
+const isJSON = function(str) {
   try {
     JSON.parse(str)
     return true
@@ -36,7 +36,7 @@ const isJSON = function (str) {
   }
 }
 
-const getTokenResponse = function (query, config) {
+const getTokenResponse = function(query, config) {
   let responseContent
   try {
     responseContent = HTTP.post(
@@ -73,7 +73,7 @@ const getTokenResponse = function (query, config) {
   }
 }
 
-const getIdentity = function (accessToken, config) {
+const getIdentity = function(accessToken, config) {
   const fetchUrl = config.baseUrl + '/oauth/getIdentity'
   try {
     return HTTP.get(
@@ -88,6 +88,6 @@ const getIdentity = function (accessToken, config) {
   }
 }
 
-MeteorOAuth2.retrieveCredential = function (credentialToken, credentialSecret) {
+MeteorOAuth2.retrieveCredential = function(credentialToken, credentialSecret) {
   return OAuth.retrieveCredential(credentialToken, credentialSecret)
 }

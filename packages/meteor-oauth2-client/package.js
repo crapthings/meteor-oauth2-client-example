@@ -19,9 +19,7 @@ Package.onUse(function (api) {
   api.use(['random', 'templating@1.0.11'], 'client')
 
   api.addFiles('common.js', ['client', 'server'])
-
   api.addFiles('check.js', 'server')
-
   api.addFiles('server.js', 'server')
   api.addFiles('client.js', 'client')
 
