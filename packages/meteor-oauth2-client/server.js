@@ -1,6 +1,3 @@
-const OAuth = Package.oauth.OAuth
-const Random = Package.random.Random
-
 OAuth.registerService(MeteorOAuth2.serviceName, 2, null, function(query) {
   const config = ServiceConfiguration.configurations.findOne({
     service: MeteorOAuth2.serviceName
